@@ -13,19 +13,19 @@ const fs = require('fs')
 // Next, require our config.json file containing the bot's token 
 const config = require("../config.json")
 
-// Now, we create 2 Collections; Commands and Aliases. This are the roots of our command handler
-client.commands = new Collection()
-client.aliases = new Collection()
+client.on("ready", () => {
+    console.log(`Logged in as ${client.user.tag}!`)
+  })
+  
+  client.on("message", msg => {
+    if (msg.content === "ping") {
+      msg.reply("pong");
+    }
+  })
 
-["aliases", "commands"].forEach(x => (client[x] = new Collection()))
-
-// Loading handlers
-["command", "event"].forEach(handler => {
-    require(`./handlers/${handler}`)(client)
-})
 
 // Finally, we login and set an activity
-client.login(config.token).then(client.user.setActivity("Under Developement", {type: "PLAYING"}))
+client.login(config.token);
 
 
 
