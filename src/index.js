@@ -1,4 +1,6 @@
+// Next, require our config.json file containing the bot's token 
 const Discord = require("discord.js")
+const config = require("../config.json")
 const client = new Discord.Client()
 
 client.on("ready", () => {
